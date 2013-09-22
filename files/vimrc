@@ -1,6 +1,7 @@
 set nocompatible
 
 " this if block from https://bitbucket.org/byronclark/settings
+" my favorites from his vimrc
 if has("autocmd")
     " remove any previous autocmd settings
     autocmd!
@@ -34,9 +35,16 @@ if has("autocmd")
 
 endif
 
+" turn filetype detection on
 filetype plugin on
 filetype indent on
 
+" load vim plugins and their help info
+" uses a plugin manager called pathogen
+" you can see what plugins are installed in ~/.vim/bundle/
+" do you install uhhh what's it called oh, fugitive?
+" no but I've been meaning to add that, let's do so in a minute
+" you are glorious
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -69,13 +77,17 @@ set ignorecase  " ignore case when searching
 set smartcase  " except when a capital letter is in the search
 set ruler  " show the cursor position all the time
 set laststatus=2  " helps show the file name
-set incsearch
+set incsearch " incremental searches of gloriousness
 
-"set foldmethod=indent   "fold based on indent
+"fold based on indent
 set foldmethod=indent
-set foldnestmax=100      "deepest fold is 10 levels
+set foldnestmax=100
 
+" this highlight is chosen for solarized, you can change it if you like.
 highlight Folded ctermbg=none ctermfg=green cterm=none
+
+" fold settings to create non-obtrusive folding (dave has some even better
+" stuff I've been meaning to get from him)
 set foldcolumn=0 " no fold indicator column next to line numbers
 set foldtext=MyFoldText() " fancy fold text
 function! MyFoldText()
@@ -92,15 +104,20 @@ if has("syntax")
   syntax enable
 endif
 
+" disable line wrapping; I often do :set wrap when dealing with wide files.
+" cool. I like nowrap.
 set nowrap
 
 " I like being able to scroll with the mouse, since it's so close-by
-" on my laptop keyboard anyway
+" on my laptop keyboard anyway; f4 disables it for ease of copying single
+" lines, and f3 reenables it
 set mouse=a 
 nnoremap <F3> :set mouse=a<CR>
 nnoremap <F4> :set mouse=<CR>
 
-" f2 to toggle paste mode
+" f2 to toggle paste mode; ie, when you want to paste stuff into vim, hit f2
+" and autoindent and a couple of other things will be temporarily shut off so
+" it gets pasted in correctly. 
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
@@ -109,19 +126,25 @@ set showmode
 " horribly prominent so I can actually tell what's what
 highlight MatchParen cterm=NONE ctermbg=black ctermfg=darkblue
 
-" for some reason after loading ~/.vimrc with `source ~/.vimrc` inside vim,
-" everything gets highlighted. this works around that.
-
+" this was to make searches readable in otherwise awful coloring
 hi Search cterm=NONE ctermfg=grey ctermbg=darkblue
 hi Visual cterm=NONE ctermfg=black ctermbg=darkyellow
 
+" fix bug with hitting shift+o to add a new line before
+" it normally waits like 5 seconds to do anything when you use shift+o, this makes it immediate
 set timeout timeoutlen=1000 ttimeoutlen=100
+
+" keep visual selection when indenting/outdenting
 vnoremap < <gv
 vnoremap > >gv
 
+" make tab completion in :e and the like more like bash
 set wildmode=longest:full,full
 set wildmenu
 
+" my sexy tool for rearranging vim windows; grab a window with ,u and paste it
+" with ,h ,j ,k ,l which put it relative to the window you're in when you use them
+" there's also ,<shift-u> to copy a window
 let g:wingrab_last_buffer = -1
 function! Wincp()
     let g:wingrab_last_buffer = bufnr("%")
@@ -133,24 +156,35 @@ nnoremap ,h :aboveleft vnew<CR>:execute "buffer! " . g:wingrab_last_buffer<CR><C
 nnoremap ,l :rightbelow vnew<CR>:execute "buffer! " . g:wingrab_last_buffer<CR><C-=><ESC><ESC>
 nnoremap ,k :aboveleft new<CR>:execute "buffer! " . g:wingrab_last_buffer<CR><C-=><ESC><ESC>
 nnoremap ,j :rightbelow new<CR>:execute "buffer! " . g:wingrab_last_buffer<CR><C-=><ESC><ESC>
+
+" show the version of this file that is currently committed to git, if we're in a git repo; useless otherwise
 nnoremap ,z :vnew \| setlocal syntax=<C-r>=&syntax<CR> \| r !git show HEAD:<C-r>=bufname("%")<CR><CR><ESC>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nomodifiable<CR><ESC><ESC>
+
+" ,pf runs pytest on the current file and shows its output in a new window
 nnoremap ,pf :vnew \| r !py.test <C-r>=bufname("%")<CR><CR><ESC>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nomodifiable<CR><ESC><ESC>
+" ,pa runs pytest in the directory vim was opened from with no filtering as to what is run
 nnoremap ,pa :vnew \| r !py.test<CR><ESC>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nomodifiable<CR><ESC><ESC>
+" hard-reset currently open file, to reset things like :set wrap to defaults
 nnoremap ,r :e __nonexistantfile__ \| e <C-r>=bufname("%")<CR><CR>
+" ,n opens nerdtree if you ever want it
 nnoremap ,n :NERDTree<CR>
+" ,t inserts the current time, like this:
+" September 21, 2013 09:37:34 PM
 nnoremap ,t :read !@ 'datetime.datetime.now().strftime("_B _d, _Y _I:_M:_S _p".replace("_", chr(37)))'<CR>
+" check what month the currently selected number represents... don't even
+" remember why I put this in the global vimrc, lol
 vnoremap ,w :!@ 'datetime.datetime(2013, int(inp()), 1).strftime(chr(37) + "B")'<CR>
 
+" make it so shift-HJKL does the same as hjkl to prevent annoying typos from
+" messing things up
 noremap J j
 noremap K k
 noremap H h
 noremap L l
 
-"let g:ctrlp_custom_ignore = {
-"    \ 'dir': '.*\/(\.git|\.hg|htmlcov|__pycache__)$',
-"    \ 'file': '.*(\.so|\.pyc)$',
-"    \ 'link': 'THIS_WILL_NEVER_MATCH'
-"    \ }
+" set up ctrl-p, a fuzzy file opening tool; very very nice and unobtrusive way
+" to quickly open files, autodetects what directory it should start from, so
+" it usually doesn't search outside a project's directory
 set wildignore=*.pyc,*.so,.git,.hg,htmlcov,__pycache__
 let g:ctrlp_open_new_file='v'
 let g:ctrlp_lazy_update=50
@@ -160,4 +194,6 @@ let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("e")': ['<c-v>']
             \ }
 
+" for some reason after loading ~/.vimrc with `source ~/.vimrc` inside vim,
+" everything gets highlighted. this works around that.
 noh
