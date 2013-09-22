@@ -175,13 +175,6 @@ nnoremap ,t :read !@ 'datetime.datetime.now().strftime("_B _d, _Y _I:_M:_S _p".r
 " remember why I put this in the global vimrc, lol
 vnoremap ,w :!@ 'datetime.datetime(2013, int(inp()), 1).strftime(chr(37) + "B")'<CR>
 
-" make it so shift-HJKL does the same as hjkl to prevent annoying typos from
-" messing things up
-noremap J j
-noremap K k
-noremap H h
-noremap L l
-
 " set up ctrl-p, a fuzzy file opening tool; very very nice and unobtrusive way
 " to quickly open files, autodetects what directory it should start from, so
 " it usually doesn't search outside a project's directory
