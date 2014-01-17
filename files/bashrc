@@ -103,3 +103,4 @@ fi
 alias mv="mv -i"
 alias cp="cp -i"
 alias file="file -k"
+alias gg="git grep"
