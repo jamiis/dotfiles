@@ -40,11 +40,6 @@ filetype plugin on
 filetype indent on
 
 " load vim plugins and their help info
-" uses a plugin manager called pathogen
-" you can see what plugins are installed in ~/.vim/bundle/
-" do you install uhhh what's it called oh, fugitive?
-" no but I've been meaning to add that, let's do so in a minute
-" you are glorious
 call pathogen#infect()
 call pathogen#helptags()
 
