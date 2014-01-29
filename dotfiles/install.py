@@ -30,7 +30,8 @@ os_dependencies = [
     "python-dev",
     "ntp-daemon",
     "tmux",
-    "tig"
+    "tig",
+    "ipython",
 ]
 
 pip_dependencies = [
