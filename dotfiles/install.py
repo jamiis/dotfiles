@@ -174,6 +174,9 @@ def user_install():
         "fi"
     )
 
+    install_text("~/.tmux.conf", "source .tmux_global.conf", before=True)
+    install_file("files/tmux", "~/.tmux_global.conf")
+
     install_text("~/.profile", readfile("files/profile_include"))
     install_text("~/.profile", "source ~/.profile_global")
     install_file("files/profile", "~/.profile_global")
