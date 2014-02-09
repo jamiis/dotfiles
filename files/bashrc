@@ -100,6 +100,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     echo "done"
 fi
 
+alias vbox="ssh -i ~/.ssh/vbox_vm jamis@192.168.56.101"
 alias mv="mv -i"
 alias cp="cp -i"
 alias file="file -k"
