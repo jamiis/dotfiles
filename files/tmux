@@ -1,3 +1,13 @@
+# cheat sheet:
+# prefix        C-a
+# new window    c
+# split horiz   %
+# split vert    "
+# pane nums     p
+# change pane   h, j, k, l
+# name window   ,
+# kill pane     x
+
 unbind C-b
 set -g prefix C-a
 
