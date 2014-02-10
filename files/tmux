@@ -4,7 +4,7 @@
 # split horiz   %
 # split vert    "
 # pane nums     p
-# change pane   h, j, k, l
+# change pane   alt + h, j, k, l
 # name window   ,
 # kill pane     x
 
