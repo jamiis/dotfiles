@@ -15,8 +15,8 @@ bind x killp
 
 bind -n M-h select-pane -L
 bind -n M-l select-pane -R
-bind -n M-j select-pane -U
-bind -n M-k select-pane -D
+bind -n M-k select-pane -U
+bind -n M-j select-pane -D
 
 setw -g monitor-activity on
 set -g visual-activity on
