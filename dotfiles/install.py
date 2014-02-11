@@ -174,11 +174,10 @@ def user_install():
         "fi"
     )
 
-    install_text("~/.tmux.conf", "source ~/.tmux_global.conf", 
-            before=True, prev_existance=False)
+    # install_text("~/.tmux.conf", "", before=True, prev_existance=False)
     # TODO shouldn't directly reference submodule
     #      instead, concat submodule .tmux to files/tmux
-    install_file("submodules/tmux/.tmux.conf", "~/.tmux_global.conf")
+    install_file("submodules/tmux/.tmux.conf", "~/.tmux.conf")
 
     install_text("~/.profile", readfile("files/profile_include"))
     install_text("~/.profile", "source ~/.profile_global")
