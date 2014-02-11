@@ -13,3 +13,6 @@
 [submodule "submodules/fugitive"]
 	path = submodules/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "tmux"]
+	path = tmux
+	url = git@github.com:gpakosz/.tmux.git
