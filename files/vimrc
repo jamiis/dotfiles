@@ -1,4 +1,4 @@
-" START: Vundle Config (https://github.com/gmarik/Vundle.vim#about)
+" start Vundle Config (https://github.com/gmarik/Vundle.vim#about)
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -40,7 +40,7 @@ filetype plugin indent on     " required
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
-" END: VUNDLE
+" end VUNDLE
 
 
 set nocompatible
