@@ -178,7 +178,7 @@ def user_install():
     # install_text("~/.tmux.conf", "", before=True, prev_existance=False)
     # TODO shouldn't directly reference submodule
     #      instead, concat submodule .tmux to files/tmux
-    install_file("files/tmux", "~/.tmux.conf")
+    # install_file("files/tmux", "~/.tmux.conf")
 
     ### vimrc 
     install_text("~/.vimrc", "source ~/.vimrc_global", before=True, prev_existance=False)
