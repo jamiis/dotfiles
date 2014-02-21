@@ -156,13 +156,7 @@ def user_install():
             else:
                 raise
 
-    install_text("~/.vimrc", "source ~/.vimrc_global",
-            before=True, prev_existance=False)
-    install_text("~/.vimrc", "set nocompatible", 0600,
-            before=True)
-    install_file("files/vimrc", "~/.vimrc_global")
-    install_file("files/vimrc_newsession", "~/.vimrc_newsession")
-
+    ### bash
     install_text("~/.bashrc", "source ~/.bashrc_global")
     install_file("files/bashrc", "~/.bashrc_global")
     delete_text("~/.bashrc",
@@ -173,24 +167,33 @@ def user_install():
         "    . /etc/bash_completion",
         "fi"
     )
+    wrap_process.call("source bashrc", ["bash", "-c", "source ~/.bashrc"])
 
-    # install_text("~/.tmux.conf", "", before=True, prev_existance=False)
-    # TODO shouldn't directly reference submodule
-    #      instead, concat submodule .tmux to files/tmux
-    install_file("submodules/tmux/.tmux.conf", "~/.tmux.conf")
-
+    ### profile
     install_text("~/.profile", readfile("files/profile_include"))
     install_text("~/.profile", "source ~/.profile_global")
     install_file("files/profile", "~/.profile_global")
 
-    wrap_process.call("git submodule", ["git", "submodule", "init"], wd=projectroot)
-    wrap_process.call("git submodule", ["git", "submodule", "update"], wd=projectroot)
+    ### tmux
+    # install_text("~/.tmux.conf", "", before=True, prev_existance=False)
+    # TODO shouldn't directly reference submodule
+    #      instead, concat submodule .tmux to files/tmux
+    install_file("files/tmux", "~/.tmux.conf")
 
-    install_file("submodules/pathogen/autoload/pathogen.vim", "~/.vim/autoload/pathogen.vim")
-    install_file("submodules/nerdtree/", "~/.vim/bundle/nerdtree/")
-    install_file("submodules/ctrlp/", "~/.vim/bundle/ctrlp/")
-    install_file("submodules/fugitive/", "~/.vim/bundle/fugitive/")
+    ### vimrc 
+    install_text("~/.vimrc", "source ~/.vimrc_global", before=True, prev_existance=False)
+    install_text("~/.vimrc", "set nocompatible", 0600, before=True)
+    install_file("files/vimrc", "~/.vimrc_global")
+    install_file("files/vimrc_newsession", "~/.vimrc_newsession")
 
+    ### vim plugins
+    #wrap_process.call("git submodule", ["git", "submodule", "init"], wd=projectroot)
+    #wrap_process.call("git submodule", ["git", "submodule", "update"], wd=projectroot)
+    #install_file("submodules/pathogen/autoload/pathogen.vim", "~/.vim/autoload/pathogen.vim")
+    #install_file("submodules/nerdtree/", "~/.vim/bundle/nerdtree/")
+    #install_file("submodules/ctrlp/", "~/.vim/bundle/ctrlp/")
+    #install_file("submodules/fugitive/", "~/.vim/bundle/fugitive/")
+    #wrap_process.call("vundle", ["bash", "-c", "vim +BundleInstall +qll"])
 
 def root_install():
     global logger

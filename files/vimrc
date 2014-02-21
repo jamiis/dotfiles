@@ -16,18 +16,20 @@ Bundle 'gmarik/vundle'
 " Keep bundle commands between here and filetype plugin indent on.
 " scripts on GitHub repos
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
+Bundle 'scrooloose/nerdtree'
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'tpope/vim-rails.git'
+
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " scripts from http://vim-scripts.org/vim/scripts.html
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
 " scripts not on GitHub
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-Bundle 'file:///home/gmarik/path/to/plugin'
+" Bundle 'file:///home/gmarik/path/to/plugin'
 " ...
 
 filetype plugin indent on     " required
@@ -41,6 +43,13 @@ filetype plugin indent on     " required
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 " end VUNDLE
+
+" colors (https://github.com/chrishunt/color-schemes)
+set background=dark
+colorscheme vimbrant
+highlight ColorColumn ctermbg=7
+highlight ColorColumn guibg=Gray
+" end colors
 
 
 set nocompatible
@@ -124,7 +133,7 @@ set foldmethod=indent
 set foldnestmax=100
 
 " this highlight is chosen for solarized, you can change it if you like.
-highlight Folded ctermbg=none ctermfg=green cterm=none
+" highlight Folded ctermbg=none ctermfg=green cterm=none
 
 " fold settings to create non-obtrusive folding (dave has some even better
 " stuff I've been meaning to get from him)
@@ -138,7 +147,7 @@ function! MyFoldText()
     return text
 endfunction
 set fillchars="fold:"
-highlight Folded ctermbg=none
+" highlight Folded ctermbg=none
 
 if has("syntax")
   syntax enable
@@ -164,11 +173,11 @@ set showmode
 
 " color the normally confusing paren-highlight to a color that isn't too
 " horribly prominent so I can actually tell what's what
-highlight MatchParen cterm=NONE ctermbg=black ctermfg=darkblue
+" highlight MatchParen cterm=NONE ctermbg=black ctermfg=darkblue
 
 " this was to make searches readable in otherwise awful coloring
-hi Search cterm=NONE ctermfg=grey ctermbg=darkblue
-hi Visual cterm=NONE ctermfg=black ctermbg=darkyellow
+" hi Search cterm=NONE ctermfg=grey ctermbg=darkblue
+" hi Visual cterm=NONE ctermfg=black ctermbg=darkyellow
 
 " fix bug with hitting shift+o to add a new line before
 " it normally waits like 5 seconds to do anything when you use shift+o, this makes it immediate
