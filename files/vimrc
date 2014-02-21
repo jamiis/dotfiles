@@ -17,8 +17,8 @@ Bundle 'gmarik/vundle'
 " scripts on GitHub repos
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
 " Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'tpope/vim-rails.git'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -31,6 +31,7 @@ Bundle 'scrooloose/nerdtree'
 " git repos on your local machine (i.e. when working on your own plugin)
 " Bundle 'file:///home/gmarik/path/to/plugin'
 " ...
+"
 
 filetype plugin indent on     " required
 "

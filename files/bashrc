@@ -56,8 +56,9 @@ function _promptcommand() {
 function add_prompt_command() {
     _PROMPT_COMMANDS=( "${_PROMPT_COMMANDS[@]}" "$1" );
 }
-PATH="$HOME/src/dotfiles/bin:/usr/local/go/bin:$PATH"
 
+# Go
+PATH="/usr/local/go/bin:$PATH"
 
 # set color prompt
 function color {
@@ -118,3 +119,6 @@ alias H='|head'
 alias W='|wc -l'
 alias S='|sort'
 alias df='df -H'
+
+# /usr/local
+export PATH="/usr/local/bin:$PATH"
