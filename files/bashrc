@@ -122,3 +122,5 @@ alias df='df -H'
 
 # /usr/local
 export PATH="/usr/local/bin:$PATH"
+
+export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7/site-packages"
