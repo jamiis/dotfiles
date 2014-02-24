@@ -18,6 +18,7 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
+Bundle 'chrishunt/color-schemes'
 " Bundle 'Lokaltog/vim-easymotion'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
