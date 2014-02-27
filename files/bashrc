@@ -113,6 +113,9 @@ alias activate="source venv/bin/activate"
 alias icanhaz="sudo apt-get install"
 alias viminstall="vim +BundleInstall +qall"
 alias cdcu="cd ~/Dropbox/School/Columbia/"
+# grep for bash process
+function grep_for_process() { ps -ax | grep -i $1 }
+alias psg=grep_for_process
 
 alias L='|less'
 alias G='|grep'
