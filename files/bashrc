@@ -112,6 +112,8 @@ blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim whit
 alias activate="source venv/bin/activate"
 alias icanhaz="sudo apt-get install"
 alias viminstall="vim +BundleInstall +qall"
+alias cdcu="cd ~/Dropbox/School/Columbia/"
+
 alias L='|less'
 alias G='|grep'
 alias T='|tail'
