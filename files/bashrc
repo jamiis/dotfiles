@@ -119,6 +119,15 @@ function grep_for_process() {
 }
 alias psg=grep_for_process
 
+function find_biggest_files() {
+    n=$1
+    if [ $# -eq 0 ]; then
+        n=5
+    fi
+    find . -type f -exec ls -s {} \; | sort -n -r | head -$n
+}
+alias findbig=find_biggest_files
+
 alias L='|less'
 alias G='|grep'
 alias T='|tail'
