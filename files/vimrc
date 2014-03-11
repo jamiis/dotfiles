@@ -102,8 +102,8 @@ filetype plugin on
 filetype indent on
 
 " load vim plugins and their help info
-call pathogen#infect()
-call pathogen#helptags()
+" call pathogen#infect()
+" call pathogen#helptags()
 
 set guioptions-=m " turn off menu bar
 set guioptions-=T " turn off toolbar
