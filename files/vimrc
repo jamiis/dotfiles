@@ -25,13 +25,6 @@ filetype plugin indent on  " required
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLORSCHEME (https://github.com/chriskempson/base16-vim)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256
-set background=dark
-colorscheme base16-chalk
-
 " this if block from https://bitbucket.org/byronclark/settings
 " my favorites from his vimrc
 if has("autocmd")
@@ -71,10 +64,6 @@ endif
 filetype plugin on
 filetype indent on
 
-" load vim plugins and their help info
-" call pathogen#infect()
-" call pathogen#helptags()
-
 set guioptions-=m " turn off menu bar
 set guioptions-=T " turn off toolbar
 
@@ -106,6 +95,9 @@ set ruler  " show the cursor position all the time
 set laststatus=2  " helps show the file name
 set incsearch " incremental searches of gloriousness
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FOLDING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "fold based on indent
 set foldmethod=indent
 set foldnestmax=100
@@ -125,6 +117,12 @@ set fillchars="fold:"
 " highlight Folded cterm=NONE ctermbg=black ctermfg=darkblue
 set nofoldenable " disable folding
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLORSCHEME (https://github.com/chriskempson/base16-vim)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256
+set background=dark
+colorscheme base16-chalk
 if has("syntax")
   syntax enable
 endif
