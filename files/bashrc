@@ -113,6 +113,8 @@ alias activate="source venv/bin/activate"
 alias icanhaz="sudo apt-get install"
 alias viminstall="vim +BundleInstall +qall"
 alias cdcu="cd ~/Dropbox/School/Columbia/"
+alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
+alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 
 function grep_for_process() { 
     ps -ax | grep -i $1
