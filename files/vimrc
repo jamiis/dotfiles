@@ -32,16 +32,6 @@ set t_Co=256
 set background=dark
 colorscheme base16-chalk
 
-" TODO remove or keep?
-" powerline (https://powerline.readthedocs.org/en/latest/overview.html)
-" python from powerline.vim import setup as powerline_setup
-" python powerline_setup()
-" python del powerline_setup
-" end powerline
-
-
-set nocompatible
-
 " this if block from https://bitbucket.org/byronclark/settings
 " my favorites from his vimrc
 if has("autocmd")
