@@ -110,9 +110,6 @@ set incsearch " incremental searches of gloriousness
 set foldmethod=indent
 set foldnestmax=100
 
-" this highlight is chosen for solarized, you can change it if you like.
-" highlight Folded ctermbg=none ctermfg=green cterm=none
-
 " fold settings to create non-obtrusive folding (dave has some even better
 " stuff I've been meaning to get from him)
 set foldcolumn=0 " no fold indicator column next to line numbers
@@ -125,14 +122,14 @@ function! MyFoldText()
     return text
 endfunction
 set fillchars="fold:"
-" highlight Folded ctermbg=none
+" highlight Folded cterm=NONE ctermbg=black ctermfg=darkblue
+set nofoldenable " disable folding
 
 if has("syntax")
   syntax enable
 endif
 
 " disable line wrapping; I often do :set wrap when dealing with wide files.
-" cool. I like nowrap.
 set nowrap
 
 " I like being able to scroll with the mouse, since it's so close-by
@@ -149,9 +146,8 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
-" color the normally confusing paren-highlight to a color that isn't too
-" horribly prominent so I can actually tell what's what
-" highlight MatchParen cterm=NONE ctermbg=black ctermfg=darkblue
+" color the normally paren-highlight 
+highlight MatchParen ctermfg=darkblue
 
 " this was to make searches readable in otherwise awful coloring
 " hi Search cterm=NONE ctermfg=grey ctermbg=darkblue
