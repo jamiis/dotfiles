@@ -12,7 +12,9 @@ shopt -s checkwinsize
 # the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 # from ubuntu, not enabled by default
-shopt -s globstar
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    shopt -s globstar
+fi
 
 # If this is an xterm set the title to user@host:dir
 # from ubuntu, may be redundant
@@ -29,8 +31,8 @@ esac
 if [ -x "$(which dircolors)" ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -39,9 +41,9 @@ fi
 
 # some more ls aliases
 # from ubuntu, may be redundant
-alias ll='ls -alhF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -alhGF'
+alias la='ls -AG'
+alias l='ls -CFG'
 
 
 
