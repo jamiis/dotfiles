@@ -122,7 +122,7 @@ set nofoldenable " disable folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 set background=dark
-colorscheme base16-chalk
+colorscheme base16-shapeshifter
 if has("syntax")
   syntax enable
 endif
