@@ -120,7 +120,6 @@ set nofoldenable " disable folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORSCHEME (https://github.com/chriskempson/base16-vim)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256
 set background=dark
 colorscheme base16-shapeshifter
 if has("syntax")
