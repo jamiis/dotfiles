@@ -107,7 +107,7 @@ alias vbox="ssh -i ~/.ssh/vbox_vm jamis@192.168.56.101"
 alias mv="mv -i"
 alias cp="cp -i"
 alias file="file -k"
-alias gg="git grep"
+alias gg="git grep --color=auto"
 alias log="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold
 blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)-
 %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
