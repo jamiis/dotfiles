@@ -9,8 +9,7 @@ ls -s ~/.bashrc bashrc
 Or, if you already have a .bashrc file you can maintain both.
 
 ```
-touch ~/.bashrc.global
-ln -s ~/.bashrc.global bashrc
+ln -s ~/dotfiles/bashrc ~/.bashrc.global
 echo "source ~/.bashrc.global" >> ~/.bashrc
 ```
 
