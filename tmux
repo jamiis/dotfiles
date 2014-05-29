@@ -6,8 +6,8 @@
 set -g default-terminal "screen-256color" # colors!
 setw -g xterm-keys on
 set -s escape-time 0                      # fastest command sequences
-set -s repeat-time 600                    # increase repeat timeout
 set -s quiet on                           # disable various messages
+# set -s repeat-time 600                    # increase repeat timeout
 
 set -g prefix2 C-a                        # GNU-Screen compatible prefix
 bind C-a send-prefix -2
@@ -20,7 +20,7 @@ bind C-a send-prefix -2
 set -g status-utf8 on                     # expect UTF-8
 setw -g utf8 on
 
-set history-limit 5000                    # boost history
+# set history-limit 5000                    # boost history
 
 # edit configuration
 bind e new-window -n '~/.tmux.conf' '${EDITOR:-vim} ~/.tmux.conf && tmux source ~/.tmux.conf && tmux display "~/.tmux.conf sourced"'

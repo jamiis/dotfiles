@@ -142,5 +142,7 @@ alias df='df -H'
 
 # /usr/local
 export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/lib/node_modules:$PATH"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7/site-packages"
