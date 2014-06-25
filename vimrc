@@ -16,6 +16,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'pbrisbin/vim-syntax-shakespeare'
 
 call vundle#end()
 filetype plugin indent on  " required
