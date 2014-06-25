@@ -11,5 +11,3 @@
 	unstage = reset HEAD --
 [core]
 	editor = /usr/bin/vim
-[push]
-	default = simple
