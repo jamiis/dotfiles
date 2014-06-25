@@ -1,0 +1,15 @@
+[user]
+	name = Jamis Johnson
+	email = jamismanwaring@gmail.com
+[color]
+	ui = true
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	ci = commit
+	unstage = reset HEAD --
+[core]
+	editor = /usr/bin/vim
+[push]
+	default = simple
