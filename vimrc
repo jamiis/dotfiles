@@ -158,6 +158,15 @@ highlight MatchParen ctermfg=darkblue
 " it normally waits like 5 seconds to do anything when you use shift+o, this makes it immediate
 set timeout timeoutlen=1000 ttimeoutlen=100
 
+" long syntax highlighting slows down vim
+set synmaxcol=512
+
+" map save and quit to Q
+nnoremap <silent> Q ZZ
+
+" <Ctrl-l> removes search highlighting
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
 " keep visual selection when indenting/outdenting
 vnoremap < <gv
 vnoremap > >gv
