@@ -140,7 +140,8 @@ alias W='|wc -l'
 alias S='|sort'
 alias df='df -H'
 
-# /usr/local
+# relative path exports (hackery) before absolute paths
+export PATH=".cabal-sandbox/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/lib/node_modules:$PATH"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
