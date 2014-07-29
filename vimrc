@@ -135,6 +135,9 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " remap <leader> to ,
 let mapleader = ","
+"
+" brilliant remap of : to ; credit to @sagnew
+nnoremap ; :
 
 " disable line wrapping; I often do :set wrap when dealing with wide files.
 set nowrap
