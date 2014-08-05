@@ -154,6 +154,9 @@ nnoremap <leader>w2 :setlocal tabstop=2<CR>:setlocal shiftwidth=2<CR>
 nnoremap <leader>w4 :setlocal tabstop=4<CR>:setlocal shiftwidth=4<CR>
 nnoremap <leader>w8 :setlocal tabstop=8<CR>:setlocal shiftwidth=8<CR>
 
+" Save current file with root privileges
+cmap w!! w !sudo tee >/dev/null %
+
 " f2 to toggle paste mode; ie, when you want to paste stuff into vim, hit f2
 " and autoindent and a couple of other things will be temporarily shut off so
 " it gets pasted in correctly. 
