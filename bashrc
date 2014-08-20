@@ -98,9 +98,7 @@ function displaygit() {
 # enable programmable completion features
 # from ubuntu, may be redundant
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    echo -n "loading completion... "
     . /etc/bash_completion
-    echo "done"
 fi
 
 alias vbox="ssh -i ~/.ssh/vbox_vm jamis@192.168.56.101"
