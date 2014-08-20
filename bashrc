@@ -152,3 +152,6 @@ function path(){
     printf "%s\n" $PATH
     IFS=$old
 }
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
