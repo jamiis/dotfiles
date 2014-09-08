@@ -6,6 +6,11 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-source ~/.profile.global
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+umask 077
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
