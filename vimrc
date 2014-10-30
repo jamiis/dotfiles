@@ -17,6 +17,8 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
+Plugin 'scrooloose/syntastic'
+Plugin 'digitaltoad/vim-jade'
 
 call vundle#end()
 filetype plugin indent on  " required
@@ -28,6 +30,15 @@ filetype plugin indent on  " required
 " :PluginClean(!)      - confirm (or auto-approve) removal of unused bundles
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Plugin commands are not allowed.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN CONFIG
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic (https://github.com/scrooloose/syntastic)
+let g:syntastic_quiet_messages = { "type": "style" }
+let g:syntastic_ocaml_checkers = ['merlin']
+let g:syntastic_python_pylint_args = ['--errors-only']
+
 
 " this if block from https://bitbucket.org/byronclark/settings
 " my favorites from his vimrc
@@ -236,6 +247,11 @@ let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("v")': ['<cr>'],
             \ 'AcceptSelection("e")': ['<c-v>']
             \ }
+
+" ocaml / opam
+" merlin completion (https://github.com/the-lambda-church/merlin)
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " for some reason after loading ~/.vimrc with `source ~/.vimrc` inside vim,
 " everything gets highlighted. this works around that.
