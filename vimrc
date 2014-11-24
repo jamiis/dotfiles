@@ -15,10 +15,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'scrooloose/syntastic'
+" non-builtin syntax highlighting
+Plugin 'plasticboy/vim-markdown'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 filetype plugin indent on  " required
