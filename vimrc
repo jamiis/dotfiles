@@ -93,6 +93,9 @@ set softtabstop=4
 set expandtab
 set backspace=indent,eol,start " defaults to eol,start iirc
 
+" visualize tabs
+set list lcs=tab:\.\ 
+
 " line numbers
 set number
 
