@@ -144,6 +144,10 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/lib/node_modules:$PATH"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
+export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
+export DOCKER_CERT_PATH=/Users/jamis/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+
 export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7/site-packages"
 
 function path(){
