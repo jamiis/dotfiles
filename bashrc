@@ -119,7 +119,7 @@ alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && kil
 # grind js files into coffee (given a typical js project layout)
 function javascriptToCoffee() {
     function find_js_or_coffee() {
-        find . -name "*.$1" -o -path './node_modules' -prune -o -path './*components' -prune -o -path './bower_components' -prune -o -path './client/*components' -prune -type f
+        find . -name "*.$1" -type f -print -o -path './node_modules' -prune -o -path './*components' -prune -o -path './bower_components' -prune -o -path './client/*components' -prune
     }
     for FILE in $(find_js_or_coffee "js")
     do 
