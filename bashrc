@@ -45,8 +45,10 @@ alias ll='ls -alhGF'
 alias la='ls -AG'
 alias l='ls -CFG'
 
-# TODO check if linux before setting xmodmaprc (swap caps lock and esc)
-xmodmap ~/.xmodmaprc
+# currently xmodmap swaps caps-lock and esc
+if [ "$(uname)" == 'Linux' ]; then
+    xmodmap ~/.xmodmaprc
+fi
 
 # End ubuntu defaults
 
