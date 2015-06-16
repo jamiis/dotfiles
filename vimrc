@@ -39,9 +39,19 @@ filetype plugin indent on  " required
 " PLUGIN CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic (https://github.com/scrooloose/syntastic)
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_quiet_messages = { "type": "style" }
 let g:syntastic_ocaml_checkers = ['merlin']
 let g:syntastic_python_pylint_args = ['--errors-only']
+let g:syntastic_javascript_checkers = ['jshint']
 
 
 " this if block from https://bitbucket.org/byronclark/settings
@@ -108,7 +118,7 @@ augroup BgHighlight
     autocmd WinLeave * set nocul
 augroup END
 
-set history=50000 " increase history 'cause I like lots of it
+set history=10000 " increase history 'cause I like lots of it
 
 set hlsearch  " I like to see my searches
 set ignorecase  " ignore case when searching
