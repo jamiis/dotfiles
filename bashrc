@@ -136,10 +136,10 @@ function javascriptToCoffee() {
             echo "File: {$1} does not exist!"
         fi
     done
-    for FILE in $(find_js_or_coffee "coffee")
-    do 
-        ditto .${FILE/./} coffee${FILE/./}
-    done
+    #for FILE in $(find_js_or_coffee "coffee")
+    #do 
+    #    ditto .${FILE/./} coffee${FILE/./}
+    #done
 }
 alias grindcoffee=javascriptToCoffee
 
