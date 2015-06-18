@@ -175,7 +175,10 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 #export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
 #export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
 #export DOCKER_TLS_VERIFY=1
-alias dockattach='docker exec -it `docker ps -lq` bash'
+alias dps='docker ps'
+alias dpsl='docker ps -l'
+alias dpsa='docker ps -l'
+alias dsh='docker exec -it `docker ps -lq` bash'
 
 export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7/site-packages"
 
@@ -192,3 +195,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/torch/install/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/torch/install/lib:$LD_LIBRARY_PATH"
 export DYLD_LIBRARY_PATH="$HOME/torch/install/lib:$DYLD_LIBRARY_PATH"
+
+export NVM_DIR="/Users/jamis/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
