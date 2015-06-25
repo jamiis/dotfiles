@@ -172,9 +172,7 @@ export PATH="/usr/local/lib/node_modules:$PATH"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # docker
-#export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
-#export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
-#export DOCKER_TLS_VERIFY=1
+alias b2dinit=$(boot2docker shellinit 2>/dev/null)
 alias dps='docker ps'
 alias dpsl='docker ps -l'
 alias dpsa='docker ps -l'
