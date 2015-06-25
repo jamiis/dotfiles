@@ -173,6 +173,7 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # docker
 alias b2dinit=$(boot2docker shellinit 2>/dev/null)
+alias b2dip='boot2docker ip 2> /dev/null'
 alias dps='docker ps'
 alias dpsl='docker ps -l'
 alias dpsa='docker ps -l'
