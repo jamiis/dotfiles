@@ -177,6 +177,7 @@ alias dps='docker ps'
 alias dpsl='docker ps -l'
 alias dpsa='docker ps -l'
 alias dsh='docker exec -it `docker ps -lq` bash'
+alias dip='docker inspect $(docker ps -lq) | grep IPAddress'
 
 export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7/site-packages"
 
