@@ -13,15 +13,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'scrooloose/syntastic'
-" non-builtin syntax highlighting
+Plugin 'bling/vim-airline'
+
+" syntax highlighting
+Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'bling/vim-airline'
 Plugin 'nachumk/systemverilog.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 
@@ -151,15 +152,6 @@ set fillchars="fold:"
 set nofoldenable " disable folding
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLORSCHEME (https://github.com/chriskempson/base16-vim)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark
-colorscheme base16-shapeshifter
-if has("syntax")
-  syntax enable
-endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " remap <leader> to ,
@@ -270,6 +262,19 @@ let g:ctrlp_prompt_mappings = {
 " merlin completion (https://github.com/the-lambda-church/merlin)
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLORSCHEME (https://github.com/flazz/vim-colorschemes)
+"   try new at http://bytefluent.com/vivify/
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=~/.vim/bundle/vim-colorschemes/
+set t_Co=256
+" note: using Atom terminal color scheme for iTerm2
+" (https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Atom.itermcolors)
+colorscheme herald
+if has("syntax")
+  syntax enable
+endif
 
 " for some reason after loading ~/.vimrc with `source ~/.vimrc` inside vim,
 " everything gets highlighted. this works around that.
