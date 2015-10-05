@@ -178,8 +178,8 @@ alias dpsa='docker ps -l'
 alias dsh='docker exec -it `docker ps -lq` bash'
 alias dip='docker inspect $(docker ps -lq) | grep IPAddress'
 
-export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python2.7/site-packages"
-export PATH="$HOME/.local/bin:$PATH"
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.5/site-packages
 
 function path(){
     old=$IFS
