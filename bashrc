@@ -62,9 +62,6 @@ function add_prompt_command() {
     _PROMPT_COMMANDS=( "${_PROMPT_COMMANDS[@]}" "$1" );
 }
 
-# Go
-PATH="/usr/local/go/bin:$PATH"
-
 # set color prompt
 function color {
     if [ "$1" == "1" ]; then
