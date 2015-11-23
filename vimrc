@@ -29,6 +29,7 @@ Plugin 'derekwyatt/vim-scala'
 
 call vundle#end()
 filetype plugin indent on  " required
+syntax on
 
 " Brief help
 " :PluginList          - list configured bundles
