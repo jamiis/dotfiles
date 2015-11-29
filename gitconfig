@@ -15,3 +15,5 @@
 	default = simple
 [diff]
 	submodule = log
+[status]
+	submoduleSummary = true
