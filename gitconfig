@@ -9,6 +9,7 @@
 	br = branch
 	ci = commit
 	unstage = reset HEAD --
+	spull = !git pull && git submodule sync --recursive && git submodule update --init --recursive
 [core]
 	editor = /usr/bin/vim
 [push]
