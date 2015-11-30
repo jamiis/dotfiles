@@ -26,6 +26,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'nachumk/systemverilog.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()
 filetype plugin indent on  " required
