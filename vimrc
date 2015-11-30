@@ -17,6 +17,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-commentary'
 
 " syntax highlighting
 Plugin 'mustache/vim-mustache-handlebars'
