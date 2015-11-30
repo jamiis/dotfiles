@@ -27,7 +27,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'nachumk/systemverilog.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'tpope/vim-commentary'
+Plugin 'luochen1990/rainbow'
 
 call vundle#end()
 filetype plugin indent on  " required
@@ -44,6 +44,9 @@ syntax on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN CONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rainbow Parentheses
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
 " Syntastic (https://github.com/scrooloose/syntastic)
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
