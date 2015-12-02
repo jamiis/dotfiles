@@ -32,7 +32,6 @@ Plugin 'luochen1990/rainbow'
 
 call vundle#end()
 filetype plugin indent on  " required
-syntax on
 
 " Brief help
 " :PluginList          - list configured bundles
@@ -159,10 +158,6 @@ if has("autocmd")
                 \ endif
 
 endif
-
-" turn filetype detection on
-filetype plugin on
-filetype indent on
 
 set guioptions-=m " turn off menu bar
 set guioptions-=T " turn off toolbar
