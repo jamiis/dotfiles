@@ -454,3 +454,16 @@ run 'for name in $(printenv | grep -Eo ^tmux_conf_[^=]+); do tmux setenv -gu $na
 #   tmux split-window "(tmux show-buffer -b fpp-$1 | fpp || true); tmux delete-buffer -b fpp-$1"
 # }
 # $@
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# tmux-continuum config
+set -g @continuum-boot 'on'
+set -g @continuum-boot-options 'iterm,fullscreen'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
