@@ -30,6 +30,7 @@ Plugin 'nachumk/systemverilog.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'luochen1990/rainbow'
+Plugin 'gisraptor/vim-lilypond-integrator'
 
 call vundle#end()
 filetype plugin indent on  " required
