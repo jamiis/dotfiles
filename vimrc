@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VUNDLE (https://github.com/gmarik/Vundle.vim#about)
+" vundle (https://github.com/gmarik/Vundle.vim#about)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -15,13 +15,21 @@ Plugin 'tpope/vim-obsession'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc.vim.git', { 'do': 'make' }
+Plugin 'godlygeek/tabular.git'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " syntax highlighting
+Plugin 'haskell.vim'
+Plugin 'Cabal.vim'
+Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'digitaltoad/vim-jade'
@@ -44,181 +52,7 @@ filetype plugin indent on  " required
 " NOTE: comments after Plugin commands are not allowed.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN CONFIG
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Rainbow Parentheses
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-
-" Neocomplete
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Syntastic (https://github.com/scrooloose/syntastic)
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_quiet_messages = { "type": "style" }
-let g:syntastic_ocaml_checkers = ['merlin']
-let g:syntastic_python_pylint_args = ['--errors-only']
-let g:syntastic_javascript_checkers = ['jshint']
-
-
-" this if block from https://bitbucket.org/byronclark/settings
-" my favorites from his vimrc
-if has("autocmd")
-    " remove any previous autocmd settings
-    autocmd!
-
-    autocmd BufWritePost ~/.vimrc so ~/.vimrc
-    autocmd BufWritePost ~/.vimrc_global so ~/.vimrc
-    autocmd BufWritePost ~/dotfiles/files/vimrc so ~/.vimrc
-    autocmd BufWritePost ~/.gvimrc so ~/.gvimrc
-
-    " text files don't have a proper filetype
-    autocmd BufReadPost *.txt setlocal textwidth=78
-    if exists("spell")
-        autocmd BufReadPost *.txt setlocal spell spelllang=en_us
-    endif
-
-    " gpg encrypted files
-    if exists("$KEY")
-        autocmd BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
-        autocmd BufReadPost *.gpg :%!gpg -d 2>/dev/null
-        autocmd BufWritePre *.gpg :%!gpg -e -r $KEY 2>/dev/null
-        autocmd BufWritePost *.gpg u
-    endif
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal g`\"" |
-                \ endif
-
-endif
-
-set guioptions-=m " turn off menu bar
-set guioptions-=T " turn off toolbar
-
-" pythony tabs
-set autoindent smarttab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set expandtab
-set backspace=indent,eol,start " defaults to eol,start iirc
-
-" visualize tabs
-set list lcs=tab:\.\ 
-
-" line numbers
-set number
-
-" highlight the current line on the current window with underline
-autocmd VimEnter * set cul
-augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
-augroup END
-
-set history=10000 " increase history 'cause I like lots of it
-
-set hlsearch  " I like to see my searches
-set ignorecase  " ignore case when searching
-set smartcase  " except when a capital letter is in the search
-set ruler  " show the cursor position all the time
-set laststatus=2  " helps show the file name
-set incsearch " incremental searches of gloriousness
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FOLDING
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"fold based on indent
-set foldmethod=indent
-set foldnestmax=100
-
-" fold settings to create non-obtrusive folding (dave has some even better
-" stuff I've been meaning to get from him)
-set foldcolumn=0 " no fold indicator column next to line numbers
-set foldtext=MyFoldText() " fancy fold text
-function! MyFoldText()
-    let line = v:foldstart
-    let indent = indent(line)
-    let indenttext = repeat(" ", indent) " take indent into account when displaying foldtext
-    let text = indenttext . foldtext() 
-    return text
-endfunction
-set fillchars="fold:"
-" highlight Folded cterm=NONE ctermbg=black ctermfg=darkblue
-set nofoldenable " disable folding
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MISC
+" misc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " remap <leader> to ,
 let mapleader = ","
@@ -276,8 +110,17 @@ vnoremap < <gv
 vnoremap > >gv
 
 " make tab completion in :e and the like more like bash
-set wildmode=longest:full,full
+" set wildmode=longest:full,full
+" set wildmenu
+
+set completeopt=menuone,menu,longest
+
+set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
+set wildmode=longest,list,full
 set wildmenu
+set completeopt+=longest
+
+set cmdheight=1
 
 " my sexy tool for rearranging vim windows; grab a window with ,u and paste it
 " with ,h ,j ,k ,l which put it relative to the window you're in when you use them
@@ -315,7 +158,8 @@ vnoremap ,w :!@ 'datetime.datetime(2013, int(inp()), 1).strftime(chr(37) + "B")'
 " set up ctrl-p, a fuzzy file opening tool; very very nice and unobtrusive way
 " to quickly open files, autodetects what directory it should start from, so
 " it usually doesn't search outside a project's directory
-set wildignore=*.pyc,*.so,.git,.hg,htmlcov,__pycache__
+set wildignore+=*.pyc,*.so,.git,.hg,htmlcov,__pycache__
+set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.cabal-sandbox,Session.vim
 let g:ctrlp_open_new_file='v'
 let g:ctrlp_lazy_update=50
 let g:ctrlp_follow_symlinks=1
@@ -330,7 +174,271 @@ let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLORSCHEME (https://github.com/flazz/vim-colorschemes)
+" neocomplete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" taken from https://github.com/SirVer/ultisnips/issues/519#issuecomment-143450416
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+autocmd Filetype tex let g:neocomplete#sources#omni#input_patterns.tex =
+    \ '\v\\\a*(ref|cite)\a*([^]]*\])?\{([^}]*,)*[^}]*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+" set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ghcmod-vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntastic (https://github.com/scrooloose/syntastic)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>s :SyntasticToggleMode<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_quiet_messages = { "type": "style" }
+let g:syntastic_ocaml_checkers = ['merlin']
+let g:syntastic_python_pylint_args = ['--errors-only']
+let g:syntastic_javascript_checkers = ['jshint']
+
+
+" this if block from https://bitbucket.org/byronclark/settings
+" my favorites from his vimrc
+if has("autocmd")
+    " remove any previous autocmd settings
+    autocmd!
+
+    autocmd BufWritePost ~/.vimrc so ~/.vimrc
+    autocmd BufWritePost ~/.vimrc_global so ~/.vimrc
+    autocmd BufWritePost ~/dotfiles/files/vimrc so ~/.vimrc
+    autocmd BufWritePost ~/.gvimrc so ~/.gvimrc
+
+    " text files don't have a proper filetype
+    autocmd BufReadPost *.txt setlocal textwidth=78
+    if exists("spell")
+        autocmd BufReadPost *.txt setlocal spell spelllang=en_us
+    endif
+
+    " gpg encrypted files
+    if exists("$KEY")
+        autocmd BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
+        autocmd BufReadPost *.gpg :%!gpg -d 2>/dev/null
+        autocmd BufWritePre *.gpg :%!gpg -e -r $KEY 2>/dev/null
+        autocmd BufWritePost *.gpg u
+    endif
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
+
+endif
+
+set guioptions-=m " turn off menu bar
+set guioptions-=T " turn off toolbar
+
+" TODO remove?
+" pythony tabs
+" set autoindent smarttab
+" http://vim.wikia.com/wiki/Converting_tabs_to_spaces
+set tabstop=4
+set shiftwidth=4
+set expandtab
+"set softtabstop=2
+set backspace=indent,eol,start " defaults to eol,start iirc
+
+" visualize tabs
+set list lcs=tab:\.\ 
+
+" line numbers
+set number
+
+" highlight the current line on the current window with underline
+autocmd VimEnter * set cul
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
+
+set history=10000 " increase history 'cause I like lots of it
+
+set hlsearch  " I like to see my searches
+set ignorecase  " ignore case when searching
+set smartcase  " except when a capital letter is in the search
+set ruler  " show the cursor position all the time
+set laststatus=2  " helps show the file name
+set incsearch " incremental searches of gloriousness
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" code folding
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"fold based on indent
+set foldmethod=indent
+set foldnestmax=100
+
+" fold settings to create non-obtrusive folding (dave has some even better
+" stuff I've been meaning to get from him)
+set foldcolumn=0 " no fold indicator column next to line numbers
+set foldtext=MyFoldText() " fancy fold text
+function! MyFoldText()
+    let line = v:foldstart
+    let indent = indent(line)
+    let indenttext = repeat(" ", indent) " take indent into account when displaying foldtext
+    let text = indenttext . foldtext() 
+    return text
+endfunction
+set fillchars="fold:"
+" highlight Folded cterm=NONE ctermbg=black ctermfg=darkblue
+set nofoldenable " disable folding
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tabular
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:haskell_tabular = 1
+
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neco-ghc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" make default tab completion
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ultisnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" inoremap <TAB> {{{1
+" Next menu item, expand snippet, jump to next placeholder or insert literal tab
+let g:UltiSnipsJumpForwardTrigger="<NOP>"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrJumpForwardOrReturnTab()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<TAB>"
+    endif
+endfunction
+inoremap <expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ "<C-R>=ExpandSnippetOrJumpForwardOrReturnTab()<CR>"
+" snoremap <TAB> {{{1
+" jump to next placeholder otherwise do nothing
+snoremap <buffer> <silent> <TAB>
+    \ <ESC>:call UltiSnips#JumpForwards()<CR>
+
+" inoremap <S-TAB> {{{1
+" previous menu item, jump to previous placeholder or do nothing
+let g:UltiSnipsJumpBackwordTrigger = "<NOP>"
+inoremap <expr> <S-TAB>
+    \ pumvisible() ? "\<C-p>" :
+    \ "<C-R>=UltiSnips#JumpBackwards()<CR>"
+
+" snoremap <S-TAB> {{{1
+" jump to previous placeholder otherwise do nothing
+snoremap <buffer> <silent> <S-TAB>
+    \ <ESC>:call UltiSnips#JumpBackwards()<CR>
+
+" inoremap <CR> {{{1
+" expand snippet, close menu or insert newline
+let g:UltiSnipsExpandTrigger = "<NOP>"
+let g:ulti_expand_or_jump_res = 0
+inoremap <silent> <CR> <C-r>=<SID>ExpandSnippetOrReturnEmptyString()<CR>
+function! s:ExpandSnippetOrReturnEmptyString()
+    if pumvisible()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<C-y>\<CR>"
+    endif
+    else
+        return "\<CR>"
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rainbow parentheses
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" colorscheme (https://github.com/flazz/vim-colorschemes)
 "   try new at http://bytefluent.com/vivify/
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/vim-colorschemes/
