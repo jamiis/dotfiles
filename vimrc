@@ -39,6 +39,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'luochen1990/rainbow'
 Plugin 'gisraptor/vim-lilypond-integrator'
+Plugin 'tomlion/vim-solidity'
 
 call vundle#end()
 filetype plugin indent on  " required
