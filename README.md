@@ -1,9 +1,13 @@
 dotfiles
 ========
-Symbolically link to these files.
+NOTE: submodules exist so clone with `--recursive`
+
+### Setup
+
+Symbolically link to these files so they update with `git pull`s
 
 ```
-ls -s path/to/dotfiles/bashrc ~/.bashrc
+ln -s path/to/dotfiles/bashrc ~/.bashrc
 ```
 
 Or, if you already have a .bashrc file you can maintain both.
@@ -14,4 +18,9 @@ ln -s path/to/dotfiles/bashrc .bashrc.global
 echo "source .bashrc.global" >> .bashrc
 ```
 
-NOTE: submodules exist so clone with `--recursive`
+### Install Vim package manager Vundle
+
+`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+
+Open vim and run `:PluginInstall` to install all vim packages.
+NOTE: colorscheme error won't appear anymore after running `PluginInstall`
