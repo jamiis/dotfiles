@@ -37,3 +37,11 @@ NOTE: colorscheme error won't appear anymore after running `PluginInstall`
 Ensure it is sourced 
 
 `tmux source-file ~/.tmux.conf`
+
+## Extras
+
+vim bindings for ipython
+
+`ipython profile create`
+
+edit `~/.ipython/profile_default/ipython_config.py` so `c.TerminalInteractiveShell.editing_mode = 'vi'`
