@@ -40,7 +40,13 @@ Ensure it is sourced
 
 ## Extras
 
-vim bindings for ipython
+#### Homebrew
+
+Install important packages and desktop applications. Make sure [Homebrew](https://brew.sh/) is installed first.
+
+`sh ./scripts/brew.sh`
+
+#### Vim bindings for iPython
 
 `ipython profile create`
 
