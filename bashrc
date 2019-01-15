@@ -116,7 +116,7 @@ alias installvundle="git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/b
 alias cdcu="cd ~/Dropbox/School/Columbia/"
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
-alias alias brewery="brew update && brew upgrade && brew cleanup"
+alias brewery="brew update && brew upgrade && brew cleanup"
 
 # grind js files into coffee (given a typical js project layout)
 function javascriptToCoffee() {
