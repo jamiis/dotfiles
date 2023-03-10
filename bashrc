@@ -164,11 +164,8 @@ alias S='|sort'
 alias df='df -H'
 
 # relative path exports (hackery) before absolute paths
-export PATH=".cabal-sandbox/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/lib/node_modules:$PATH"
-export PATH="$HOME/Library/Haskell/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+# export PATH="/usr/local/lib/node_modules:$PATH"
 
 # docker
 alias b2dinit=$(boot2docker shellinit 2> /dev/null)
@@ -186,5 +183,10 @@ function path(){
     IFS=$old
 }
 
+# nvm PATH
 export NVM_DIR="/Users/jamis/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# python PATH for homebrew
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
