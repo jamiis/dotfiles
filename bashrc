@@ -118,29 +118,6 @@ alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && kill
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias brewery="brew update && brew upgrade && brew cleanup"
 
-# grind js files into coffee (given a typical js project layout)
-function javascriptToCoffee() {
-    function find_js_or_coffee() {
-        find . -name "*.$1" -type f -print -o -path './node_modules' -prune -o -path './*components' -prune -o -path './bower_components' -prune -o -path './client/*components' -prune
-    }
-    for FILE in $(find_js_or_coffee "js")
-    do 
-        if [ -e $FILE ] ; then        
-            COFFEE=${FILE//.js/.coffee}
-
-            echo "grinding ${FILE} to ${COFFEE}"
-            js2coffee "$FILE" > "$COFFEE"
-        else     
-            echo "File: {$1} does not exist!"
-        fi
-    done
-    #for FILE in $(find_js_or_coffee "coffee")
-    #do 
-    #    ditto .${FILE/./} coffee${FILE/./}
-    #done
-}
-alias grindcoffee=javascriptToCoffee
-
 function grep_for_process() { 
     ps -ax | grep -i $1
 }
