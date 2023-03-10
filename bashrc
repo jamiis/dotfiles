@@ -186,12 +186,5 @@ function path(){
     IFS=$old
 }
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-export PATH="$HOME/torch/install/bin:$PATH"
-export LD_LIBRARY_PATH="$HOME/torch/install/lib:$LD_LIBRARY_PATH"
-export DYLD_LIBRARY_PATH="$HOME/torch/install/lib:$DYLD_LIBRARY_PATH"
-
 export NVM_DIR="/Users/jamis/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
