@@ -177,10 +177,7 @@ alias dsh='docker exec -it `docker ps -lq` bash'
 alias dip='docker inspect $(docker ps -lq) | grep IPAddress'
 
 function path(){
-    old=$IFS
-    IFS=:
-    printf "%s\n" $PATH
-    IFS=$old
+    echo $PATH | sed 's/:/\n/g' | sort | uniq -c
 }
 
 # nvm PATH
