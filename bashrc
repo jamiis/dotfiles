@@ -78,7 +78,6 @@ PS1="`color 1`\u@\h`color`:`color 2`\w`color`\$ "
 unset c
 unset COLORFGBG
 
-
 # see also http://mywiki.wooledge.org/BashFAQ/088
 HISTSIZE=10000000000000
 HISTFILESIZE=10000000000000
@@ -90,18 +89,12 @@ function flushhistory() {
 }
 add_prompt_command flushhistory
 
-function displaygit() {
-    pushd ~/dotfiles >&/dev/null ; git status -s | _gitabs; popd >&/dev/null 
-}
-#add_prompt_command displaygit
-
 # enable programmable completion features
 # from ubuntu, may be redundant
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-alias vbox="ssh -i ~/.ssh/vbox_vm jamis@192.168.56.101"
 alias mv="mv -i"
 alias cp="cp -i"
 alias file="file -k"
@@ -113,7 +106,6 @@ alias activate="source venv/bin/activate"
 alias icanhaz="sudo apt-get install"
 alias installvundleplugins="vim +BundleInstall +qall"
 alias installvundle="git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
-alias cdcu="cd ~/Dropbox/School/Columbia/"
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias brewery="brew update && brew upgrade && brew cleanup"
